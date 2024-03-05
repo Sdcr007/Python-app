@@ -27,9 +27,8 @@ jobs:
       - name: Authenticate with Google Cloud
         uses: google-github-actions/auth@main
         with:
-          service_account_key: ${{ secrets.GOOGLE_APPLICATION_CREDENTIALS }}
-          project_id: ${{ secrets.ingka-ilo-cybersecurity-dev }}
-          export_default_credentials: true
+            credentials_json: ${{ secrets.GOOGLE_APPLICATION_CREDENTIALS }}
+
 
       # Deploy to Google Cloud App Engine
       - name: Deploy to App Engine
