@@ -25,7 +25,7 @@ jobs:
 
       # Authenticate with Google Cloud
       - name: Authenticate with Google Cloud
-        uses: GoogleCloudPlatform/github-actions/setup-gcloud@main
+        uses: google-github-actions/auth@main
         with:
           service_account_key: ${{ secrets.GOOGLE_APPLICATION_CREDENTIALS }}
           project_id: ${{ secrets.ingka-ilo-cybersecurity-dev }}
