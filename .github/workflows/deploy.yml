@@ -27,12 +27,12 @@ jobs:
           credentials_json: ${{ secrets.GOOGLE_APPLICATION_CREDENTIALS }}
 
       - name: Deploy to Cloud Run
-        uses: google-github-actions/deploy-cloudrun@main
+        uses: google-github-actions/deploy-cloudrun@v1
         with:
           image: gcr.io/ingka-ilo-cybersecurity-dev/my-python-app
+          service_account_email: ${{ secrets.ingka-ilo-cybersecurity-dev@appspot.gserviceaccount.com }}
           region: us-central1
           platform: managed
-          allow-unauthenticated: true
-        # Set to false for authentication required
+          allow-unauthenticated: true # Set to false for authentication required
 
       # Optionally, you can add more steps for testing, linting, etc.
