@@ -22,7 +22,7 @@ jobs:
         run: pip install -r requirements.txt
 
       - name: Authenticate with Google Cloud
-        uses: google-github-actions/auth@master
+        uses: google-github-actions/auth@main
         with:
           credentials_json: ${{ secrets.GOOGLE_APPLICATION_CREDENTIALS }}
 
