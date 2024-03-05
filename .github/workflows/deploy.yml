@@ -22,7 +22,7 @@ jobs:
         run: pip install -r requirements.txt
 
       - name: Authenticate with Google Cloud
-        uses: google-github-actions/auth@main
+        uses: google-github-actions/auth@v1
         with:
           credentials_json: ${{ secrets.GOOGLE_APPLICATION_CREDENTIALS }}
 
@@ -30,7 +30,7 @@ jobs:
         uses: google-github-actions/deploy-cloudrun@main
         with:
           image: gcr.io/ingka-ilo-cybersecurity-dev/my-python-app
-          service_account_email: ${{ secrets.GOOGLE_APPLICATION_CREDENTIALS }}
+          service_account_email: ${{ secrets.ingka-ilo-cybersecurity-dev@appspot.gserviceaccount.com }}
           region: us-central1
           platform: managed
           allow-unauthenticated: true # Set to false for authentication required
