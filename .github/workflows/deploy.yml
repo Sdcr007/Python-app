@@ -23,13 +23,11 @@ jobs:
       - name: Install dependencies
         run: pip install -r requirements.txt
 
-      # Authenticate with Google Cloud
-      - name: Authenticate with Google Cloud
-        uses: google-github-actions/auth@main
-        with:
-            credentials_json: ${{ secrets.GOOGLE_APPLICATION_CREDENTIALS }}
-
-
       # Deploy to Google Cloud App Engine
       - name: Deploy to App Engine
-        run: gcloud app deploy app.yaml --quiet
+        env:
+            PROJECT_ID: ingka-ilo-cybersecurity-dev
+            credentials_json: ${{ secrets.GOOGLE_APPLICATION_CREDENTIALS}}
+        run: |
+            echo "$credentials_json" | gcloud auth activate-service-account --key-file=- --project=$PROJECT_ID
+            gcloud app deploy app.yaml --quiet
