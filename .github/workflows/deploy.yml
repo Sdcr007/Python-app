@@ -1,4 +1,4 @@
-name: Deploy to Google Cloud
+name: Deploy to Google Cloud App Engine
 
 on:
   push:
@@ -13,26 +13,24 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v2
 
+      # Install Python (if not already installed)
       - name: Set up Python
         uses: actions/setup-python@v2
         with:
           python-version: '3.x'
 
+      # Install dependencies
       - name: Install dependencies
         run: pip install -r requirements.txt
 
+      # Authenticate with Google Cloud
       - name: Authenticate with Google Cloud
-        uses: google-github-actions/auth@main
+        uses: GoogleCloudPlatform/github-actions/setup-gcloud@main
         with:
-          credentials_json: ${{ secrets.GOOGLE_APPLICATION_CREDENTIALS }}
+          service_account_key: ${{ secrets.GOOGLE_APPLICATION_CREDENTIALS }}
+          project_id: ${{ secrets.ingka-ilo-cybersecurity-dev }}
+          export_default_credentials: true
 
-      - name: Deploy to Cloud Run
-        uses: google-github-actions/deploy-cloudrun@main
-        with:
-          image: gcr.io/ingka-ilo-cybersecurity-dev/my-python-app
-          service_account_email: ${{ secrets.GOOGLE_APPLICATION_CREDENTIALS }}
-          region: us-central1
-          platform: managed
-          allow-unauthenticated: true # Set to false for authentication required
-
-      # Optionally, you can add more steps for testing, linting, etc.
+      # Deploy to Google Cloud App Engine
+      - name: Deploy to App Engine
+        run: gcloud app deploy app.yaml --quiet
