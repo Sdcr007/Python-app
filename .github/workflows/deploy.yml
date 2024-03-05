@@ -30,9 +30,9 @@ jobs:
         uses: google-github-actions/deploy-cloudrun@main
         with:
           image: gcr.io/ingka-ilo-cybersecurity-dev/my-python-app
-          service_account_email: ${{ secrets.ingka-ilo-cybersecurity-dev@appspot.gserviceaccount.com }}
+          credentials_json: ${{ secrets.GOOGLE_APPLICATION_CREDENTIALS }}
           region: us-central1
           platform: managed
-          allow-unauthenticated: true # Set to false for authentication required
+        # Set to false for authentication required
 
       # Optionally, you can add more steps for testing, linting, etc.
