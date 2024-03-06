@@ -7,4 +7,5 @@ def hello():
     return 'Hello, World! This is my Python application deployed on Google Cloud!'
 
 if __name__ == '__main__':
+    from waitress import serve
     app.run(host='0.0.0.0', port=8080)
